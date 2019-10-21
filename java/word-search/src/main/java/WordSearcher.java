@@ -70,18 +70,18 @@ class WordSearcher {
         int numSteps = length - 1;
 
         for (int[] direction : DIRECTIONS) {
-            int i = start_i;
             int delta_i = direction[0];
-            int end_i = i + delta_i * numSteps;
+            int end_i = start_i + delta_i * numSteps;
             if (end_i < 0 || end_i >= numRows)
                 continue;
 
-            int j = start_j;
             int delta_j = direction[1];
-            int end_j = j + delta_j * numSteps;
+            int end_j = start_j + delta_j * numSteps;
             if (end_j < 0 || end_j >= numCols)
                 continue;
 
+            int i = start_i;
+            int j = start_j;
             boolean isMatch = true;
             for (int k = 0; k < length; k++) {
                 if (word.charAt(k) != grid[i][j]) {
@@ -97,9 +97,6 @@ class WordSearcher {
         return null;
     }
 
-    /** 
-     * 
-    */
     static private WordLocation xyLocationOf(int start_i, int start_j, int end_i, int end_j) {
         return new WordLocation(new Pair(start_j + 1, start_i + 1), new Pair(end_j + 1, end_i + 1));
     }
